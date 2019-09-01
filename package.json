@@ -1,0 +1,35 @@
+{
+  "name": "npmpackagecount",
+  "version": "1.0.0",
+  "description": "npm package download count",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PurnimaNaik/npm-package-download-count.git"
+  },
+  "keywords": [
+    "npmpackagecount",
+    "npmdownloadcount"
+  ],
+  "author": "Purnima Naik",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PurnimaNaik/npm-package-download-count/issues"
+  },
+  "homepage": "https://github.com/PurnimaNaik/npm-package-download-count#readme",
+  "dependencies": {
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  },
+  "devDependencies": {
+    "babel-loader": "^8.0.6",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "webpack": "^4.39.3",
+    "webpack-dev-server": "^3.8.0"
+  }
+}
