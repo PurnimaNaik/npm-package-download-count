@@ -3,6 +3,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { render } from 'react-dom';
 import style from '../styles/index.css';
+import Button from 'react-bootstrap/Button';
 
 class App extends React.Component {
   constructor() {
@@ -94,61 +95,79 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <h1>hello</h1>
+      <div className="mainContainer">
+        <p className="heading"> NPM Package Download Count</p>
         <form className="npm-count-form">
           <input
             type="text"
-            className="form-control"
-            placeholder="package name"
+            className="input"
+            placeholder="enter package name"
             onChange={evt => {
               this.setState({ packageNameInState: evt.target.value });
             }}
           />
-          <h4>Select start date</h4> <h4>Select end date</h4>
-          <>
-            <DatePicker
-              selectsStart
-              selected={this.state.startDate}
-              onChange={this.setStartDate.bind(this)}
-              startDate={this.state.startDate}
-              endDate={this.state.endDate}
-              maxDate={new Date()}
-              isClearable
-            />
-
-            <DatePicker
-              selectsEnd
-              selected={this.state.endDate}
-              onChange={this.setEndDate.bind(this)}
-              endDate={this.state.endDate}
-              startDate={this.state.startDate}
-              minDate={this.state.startDate}
-              maxDate={new Date()}
-              isClearable
-            />
-          </>
+          <p className="dateRangeInstruction">Select date range</p>
+          <div className="datePickerContainer">
+            <>
+              
+                <DatePicker
+                className="firstDatePicker"
+                  selectsStart
+                  selected={this.state.startDate}
+                  onChange={this.setStartDate.bind(this)}
+                  startDate={this.state.startDate}
+                  endDate={this.state.endDate}
+                  maxDate={new Date()}
+                  isClearable
+                />
+          
+              <DatePicker
+                selectsEnd
+                selected={this.state.endDate}
+                onChange={this.setEndDate.bind(this)}
+                endDate={this.state.endDate}
+                startDate={this.state.startDate}
+                minDate={this.state.startDate}
+                maxDate={new Date()}
+                isClearable
+              />
+            </>
+          </div>
         </form>
 
-        <button type="button" onClick={this.onSubmit} className="btn">
+<div className="buttonContainer">
+<Button
+        
+          className="button"
+          onClick={this.onSubmit}
+          variant="success"
+        >
           Get Count
-        </button>
+        </Button>
+</div>
+
 
         {this.state.responseInState ? (
-          <div>
-            <h3>Results</h3>
-            <h3>{this.state.responseInState.downloads}</h3>
-            <h3>{this.state.responseInState.start}</h3>
-            <h3>{this.state.responseInState.end}</h3>
-            <h3>{this.state.responseInState.package}</h3>
+          <div className="resultsContainer">
+            {/* <p>Results</p> */}
+
+            {/* <p className="instruction">
+              {this.state.responseInState.package} was downloaded
+            </p> */}
+            <p className="downloadCount">
+              {this.state.responseInState.downloads}
+            </p>
+            <p className="instruction">downloads</p>
+
+            {/* <p className="instruction">
+              times from {this.state.startDate.toLocaleDateString()} to{' '}
+              {this.state.endDate.toLocaleDateString()}
+            </p> */}
           </div>
         ) : null}
       </div>
     );
   }
 }
-
-
-
 
 render(<App />, window.document.getElementById('app'));
