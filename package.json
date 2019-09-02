@@ -25,6 +25,7 @@
   "dependencies": {
     "@babel/preset-react": "^7.0.0",
     "react": "^16.9.0",
+    "react-datepicker": "^2.9.3",
     "react-dom": "^16.9.0"
   },
   "devDependencies": {
