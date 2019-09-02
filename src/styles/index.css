@@ -1,6 +1,12 @@
 .container {
     display: flex;
-    justify-content: center;
+    flex:1;
+    height:100vh;
+    width:100vw;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     padding-bottom: 15px;
-    background-color: goldenrod;
+    background-image:url('../images/background.jpg');
+    justify-content: center;
   }
