@@ -13,6 +13,7 @@ class App extends React.Component {
       packageNameInState: '',
       startDate: new Date(),
       endDate: new Date(),
+      response:"",
     };
   }
   componentDidMount() {
@@ -44,9 +45,12 @@ class App extends React.Component {
     request.send();
   }
 
-  oncallback(newData) {
-    console.log('newData');
-    console.log(newData);
+  oncallback(response) {
+    console.log('response');
+    console.log(response);
+    this.setState({
+        responseInState:response,
+    })
   }
 
   onNoResultCallback() {
@@ -117,15 +121,29 @@ class App extends React.Component {
           isClearable
         />
 </>
-
-
-
         </form>
 
         <button type="button" onClick={this.onSubmit} className="btn">Get Count</button>
+
+{this.state.responseInState?
+<div>
+<h3>Results</h3>
+        <h3>{this.state.responseInState.downloads}</h3>
+        <h3>{this.state.responseInState.start}</h3>
+        <h3>{this.state.responseInState.end}</h3>
+        <h3>{this.state.responseInState.package}</h3>
+</div>
+:
+null}
+
+
+
       </div>
     );
   }
 }
 
 render(<App />, window.document.getElementById('app'));
+
+
+// {downloads: 18, start: "2019-08-05", end: "2019-09-01", package: "two-part-progress-circle"}
