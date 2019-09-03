@@ -58,13 +58,12 @@ class App extends React.Component {
 
   onNoResultCallback() {
     console.log('onNoResultCallback');
+    // this.setState({
+    //   errorMessage: "P",
+    // });
   }
 
   onSubmit(e) {
-    console.log('this.state.packageNameInState');
-    console.log(this.state.packageNameInState);
-    console.log(this.state.startDate);
-    console.log(this.state.endDate);
     this.retrieveCount();
   }
 
@@ -95,22 +94,22 @@ class App extends React.Component {
   render() {
     return (
       <div className="mainContainer">
-        <p className="heading"> NPM Package Download Count</p>
-        <form className="npm-count-form">
-          <input
-            type="text"
-            className="input"
-            placeholder="enter package name"
-            onChange={evt => {
-              this.setState({ packageNameInState: evt.target.value });
-            }}
-          />
-          <p className="dateRangeInstruction">Select date range</p>
-          <div className="datePickerContainer">
-            <>
-              
+        <div className="contentContainer">
+          <p className="heading"> NPM Package Download Count</p>
+          <form className="npm-count-form">
+            <input
+              type="text"
+              className="input"
+              placeholder="enter package name"
+              onChange={evt => {
+                this.setState({ packageNameInState: evt.target.value });
+              }}
+            />
+            <p className="dateRangeInstruction">Select date range</p>
+            <div className="datePickerContainer">
+              <>
                 <DatePicker
-                className="firstDatePicker"
+                  className="firstDatePicker"
                   selectsStart
                   selected={this.state.startDate}
                   onChange={this.setStartDate.bind(this)}
@@ -119,53 +118,57 @@ class App extends React.Component {
                   maxDate={new Date()}
                   isClearable
                 />
-          
-              <DatePicker
-                selectsEnd
-                selected={this.state.endDate}
-                onChange={this.setEndDate.bind(this)}
-                endDate={this.state.endDate}
-                startDate={this.state.startDate}
-                minDate={this.state.startDate}
-                maxDate={new Date()}
-                isClearable
-              />
-            </>
+
+                <DatePicker
+                  selectsEnd
+                  selected={this.state.endDate}
+                  onChange={this.setEndDate.bind(this)}
+                  endDate={this.state.endDate}
+                  startDate={this.state.startDate}
+                  minDate={this.state.startDate}
+                  maxDate={new Date()}
+                  isClearable
+                />
+              </>
+            </div>
+          </form>
+
+          <div className="buttonContainer">
+            <button
+              className="button"
+              onClick={this.onSubmit}
+              variant="success"
+              disabled={this.state.packageNameInState == ''}
+              // disabled={false}
+            >
+              Get Count
+            </button>
           </div>
-        </form>
 
-<div className="buttonContainer">
-<button
-        
-          className="button"
-          onClick={this.onSubmit}
-          variant="success"
-          disabled={this.state.packageNameInState==""}
-// disabled={false}
->
-          Get Count
-        </button>
-</div>
+          {this.state.responseInState ? (
+            <div className="resultsContainer">
+              {/* <p>Results</p> */}
 
-
-        {this.state.responseInState ? (
-          <div className="resultsContainer">
-            {/* <p>Results</p> */}
-
-            {/* <p className="instruction">
+              {/* <p className="instruction">
               {this.state.responseInState.package} was downloaded
             </p> */}
-            <p className="downloadCount">
-              {this.state.responseInState.downloads}
-            </p>
-            <p className="instruction">downloads</p>
+              <p className="downloadCount">
+                {this.state.responseInState.downloads}
+              </p>
+              <p className="instruction">downloads</p>
 
-            {/* <p className="instruction">
+              {/* <p className="instruction">
               times from {this.state.startDate.toLocaleDateString()} to{' '}
               {this.state.endDate.toLocaleDateString()}
             </p> */}
-          </div>
-        ) : null}
+            </div>
+          ) : null}
+        </div>
+        <div className="disclaimerContainer">
+          <p className="APIDisclaimer">
+            * Website uses NPM's API to pull download count.
+          </p>
+        </div>
       </div>
     );
   }
