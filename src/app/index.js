@@ -106,12 +106,12 @@ class App extends React.Component {
     return (
       <div className="mainContainer">
         <div className="contentContainer">
-          <p className="heading"> NPM Package Download Count</p>
+          <p className="heading"> Check NPM Package Downloads</p>
           <form className="npm-count-form">
             <input
               type="text"
               className="input"
-              placeholder="enter package name"
+              placeholder="Enter package name"
               onChange={evt => {
                 this.setState({ packageNameInState: evt.target.value,errorMessageInState:'',
                 responseInState:'', });
