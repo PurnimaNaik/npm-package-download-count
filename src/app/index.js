@@ -3,7 +3,6 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { render } from 'react-dom';
 import style from '../styles/index.css';
-import Button from 'react-bootstrap/Button';
 
 class App extends React.Component {
   constructor() {
@@ -136,14 +135,16 @@ class App extends React.Component {
         </form>
 
 <div className="buttonContainer">
-<Button
+<button
         
           className="button"
           onClick={this.onSubmit}
           variant="success"
-        >
+          disabled={this.state.packageNameInState==""}
+// disabled={false}
+>
           Get Count
-        </Button>
+        </button>
 </div>
 
 
