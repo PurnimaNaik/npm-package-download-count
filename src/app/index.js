@@ -12,7 +12,8 @@ class App extends React.Component {
       packageNameInState: '',
       startDate: new Date(),
       endDate: new Date(),
-      response: '',
+      responseInState: '',
+      errorMessageInState:'',
     };
   }
   componentDidMount() {
@@ -41,8 +42,8 @@ class App extends React.Component {
 
       if (request.readyState == 4 && request.status == 200) {
         this.oncallback(data);
-      } else if (request.readyState == 4 && request.status == 404) {
-        this.onNoResultCallback();
+      } else if (request.status != 200) {
+        this.onNoResultCallback(data);
       }
     }.bind(this);
     request.send();
@@ -56,14 +57,24 @@ class App extends React.Component {
     });
   }
 
-  onNoResultCallback() {
+  onNoResultCallback(response) {
     console.log('onNoResultCallback');
-    // this.setState({
-    //   errorMessage: "P",
-    // });
+    console.log(response);
+    this.setState({
+      errorMessageInState: response.error,
+    });
   }
 
   onSubmit(e) {
+    // this.setState({
+      // errorMessageInState:'',
+      // responseInState:'',
+      // packageNameInState: '',
+      // startDate: new Date(),
+      // endDate: new Date(),
+    // },()=>{
+    //   this.retrieveCount();
+    // });
     this.retrieveCount();
   }
 
@@ -102,7 +113,8 @@ class App extends React.Component {
               className="input"
               placeholder="enter package name"
               onChange={evt => {
-                this.setState({ packageNameInState: evt.target.value });
+                this.setState({ packageNameInState: evt.target.value,errorMessageInState:'',
+                responseInState:'', });
               }}
             />
             <p className="dateRangeInstruction">Select date range</p>
@@ -144,8 +156,12 @@ class App extends React.Component {
               Get Count
             </button>
           </div>
+{this.state.errorMessageInState!='' ?(
+  <p className="error">Error : {this.state.errorMessageInState}.</p>
+):null}
 
-          {this.state.responseInState ? (
+
+          {this.state.responseInState && this.state.errorMessageInState=='' && this.state.packageNameInState ? (
             <div className="resultsContainer">
               {/* <p>Results</p> */}
 

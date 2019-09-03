@@ -88,6 +88,10 @@ firstDatePicker {
   color: midnightblue;
   border:none;
 }
+.error{
+  font-size: 23px;
+  color: #FFA420;
+}
 
 @media only screen and (max-width: 550px) {
   .input {
