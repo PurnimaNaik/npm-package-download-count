@@ -182,7 +182,7 @@ class App extends React.Component {
         </div>
         <div className="disclaimerContainer">
           <p className="APIDisclaimer">
-            * Website uses NPM's API to pull download count.
+            * Website uses NPM's API to curate download count.
           </p>
         </div>
       </div>
