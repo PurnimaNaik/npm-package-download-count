@@ -13,7 +13,7 @@ class App extends React.Component {
       startDate: new Date(),
       endDate: new Date(),
       responseInState: '',
-      errorMessageInState:'',
+      errorMessageInState: '',
     };
   }
   componentDidMount() {
@@ -67,14 +67,18 @@ class App extends React.Component {
 
   onSubmit(e) {
     // this.setState({
-      // errorMessageInState:'',
-      // responseInState:'',
-      // packageNameInState: '',
-      // startDate: new Date(),
-      // endDate: new Date(),
+    // errorMessageInState:'',
+    // responseInState:'',
+    // packageNameInState: '',
+    // startDate: new Date(),
+    // endDate: new Date(),
     // },()=>{
     //   this.retrieveCount();
     // });
+    this.setState({
+      errorMessageInState: '',
+      responseInState: '...',
+    });
     this.retrieveCount();
   }
 
@@ -113,8 +117,11 @@ class App extends React.Component {
               className="input"
               placeholder="Enter package name"
               onChange={evt => {
-                this.setState({ packageNameInState: evt.target.value,errorMessageInState:'',
-                responseInState:'', });
+                this.setState({
+                  packageNameInState: evt.target.value,
+                  errorMessageInState: '',
+                  responseInState: '',
+                });
               }}
             />
             <p className="dateRangeInstruction">Select date range</p>
@@ -156,12 +163,13 @@ class App extends React.Component {
               Get Count
             </button>
           </div>
-{this.state.errorMessageInState!='' ?(
-  <p className="error">Error : {this.state.errorMessageInState}.</p>
-):null}
+          {this.state.errorMessageInState != '' ? (
+            <p className="error">Error : {this.state.errorMessageInState}.</p>
+          ) : null}
 
-
-          {this.state.responseInState && this.state.errorMessageInState=='' && this.state.packageNameInState ? (
+          {this.state.responseInState.downloads &&
+          this.state.errorMessageInState == '' &&
+          this.state.packageNameInState ? (
             <div className="resultsContainer">
               {/* <p>Results</p> */}
 
@@ -178,7 +186,16 @@ class App extends React.Component {
               {this.state.endDate.toLocaleDateString()}
             </p> */}
             </div>
-          ) : null}
+          ) : (
+          <div className="resultsContainer">
+
+          <p className="downloadCount">
+            {this.state.responseInState}
+          </p>
+          {/* <p className="instruction">downloads</p> */}
+        </div>
+          )
+          }
         </div>
         <div className="disclaimerContainer">
           <p className="APIDisclaimer">
