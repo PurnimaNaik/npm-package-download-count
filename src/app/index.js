@@ -66,15 +66,6 @@ class App extends React.Component {
   }
 
   onSubmit(e) {
-    // this.setState({
-    // errorMessageInState:'',
-    // responseInState:'',
-    // packageNameInState: '',
-    // startDate: new Date(),
-    // endDate: new Date(),
-    // },()=>{
-    //   this.retrieveCount();
-    // });
     this.setState({
       errorMessageInState: '',
       responseInState: '...',
