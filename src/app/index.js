@@ -162,11 +162,7 @@ class App extends React.Component {
           this.state.errorMessageInState == '' &&
           this.state.packageNameInState ? (
             <div className="resultsContainer">
-              {/* <p>Results</p> */}
-
-              {/* <p className="instruction">
-              {this.state.responseInState.package} was downloaded
-            </p> */}
+              
               <p className="downloadCount">
                 {this.state.responseInState.downloads}
               </p>
