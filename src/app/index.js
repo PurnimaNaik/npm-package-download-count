@@ -175,7 +175,7 @@ class App extends React.Component {
           <p className="downloadCount">
             {this.state.responseInState}
           </p>
-          {/* <p className="instruction">downloads</p> */}
+          
         </div>
           )
           }
